@@ -13,8 +13,9 @@ var updateCart = function () {
     totalPrice += cart[i].price;
     $('.cart-list').append(item);
   }
- 
   $('.total').html(totalPrice);
+  removeObj();
+  
 }
 
 var addItem = function (item, price) {
@@ -33,9 +34,7 @@ var clearCart = function () {
 
 var removeObject = function (currentItem) {
   var $clickedItem = $(currentItem).closest('.cartItem');
-  console.log($(currentItem).closest('.cartItem'));
   var index = $clickedItem.index();
-
   cart.splice(index, 1);
   $clickedItem.remove();
 }
@@ -61,10 +60,12 @@ $('.clear-cart').on('click', function () {
   clearCart();
 });
 
-
-$('.removeItem').on('click', function() {
-  removeObject(this);
-});
+var removeObj = function() {
+  $('.removeItem').on('click', function() {
+    removeObject(this);
+    updateCart();
+  });
+};
 
 // update the cart as soon as the page loads!
 updateCart();
