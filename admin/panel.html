@@ -17,10 +17,9 @@
   <div class="container">
     <div class="create-item">
       <p class="create-title">Create Item</p>
-      <form class="form-horizontal">
+      <form class="form-horizontal item-form">
         <div class="form-group">
           <input type="text" class="form-control" id="product-name" placeholder="Product name"></input>
-          <p class="error" id="name-error"></p>
         </div>
         <div class="form-group">
           <input type="number" class="form-control" id="product-price" placeholder="Product price"></input>
@@ -28,8 +27,21 @@
         <div class="form-group">
           <input type="text" class="form-control" id="product-img" placeholder="Img Url"></input>
         </div>
-      </form>
-      <button class="btn center-block submit-product">Submit</button>
+        <p class="error text-center" id="name-error"></p>
+        <button class="btn center-block submit-product">Submit</button>
+      </form> 
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="search-item">
+      <p class="search-title">Search on Amazon</p>
+      <form class="form-horizontal search-form">
+        <div class="form-group">
+          <input type="text" class="form-control" id="product-name" placeholder="Product name"></input>
+        </div>
+        <button class="btn center-block search-product">Search</button>
+      </form> 
     </div>
   </div>
   <div class="container">
