@@ -1,6 +1,9 @@
 // an array with all of our cart items
 var cart = [];
-var products = [{name:'glass',price:68,url:'http://ecx.images-amazon.com/images/I/31AOX24ATKL.jpg'},{name:'pencils',price:3,url:'http://ecx.images-amazon.com/images/I/51YFEe%2BCYbL.jpg'}];
+var products = [
+{name:'glass',price:68,url:'http://ecx.images-amazon.com/images/I/31AOX24ATKL.jpg'},
+{name:'pencils',price:3,url:'http://ecx.images-amazon.com/images/I/51YFEe%2BCYbL.jpg'}
+];
 
 var updateCart = function () {
   var source1 = $('#cart-item-1').html();
@@ -32,19 +35,17 @@ var getTotal = function (){
 }
 
 var addItem = function (item) {
-  var count = 0;
   var l = cart.length;
 
   for(i = 0; i < l; i++){
   	if(cart[i].name === item.name) {
   		cart[i].amount++
-  	}else{
-  		count++
+      updateCart();
+      return;
   	}
   }
-  if(count === l){
-  	cart.push(item);
-  }
+
+  cart.push(item);
   updateCart();
 }
 
@@ -56,20 +57,6 @@ var removeItem = function (index) {
 var clearCart = function () {
   cart = [];
   updateCart();
-}
-
-var addProduct = function (product) {
-  var l = products.length;
-
-  for(i = 0; i < l; i++){
-    if(products[i].name === product.name) {
-      $('#name-error').text('This name is already taken');
-      $('#name-error').toggleClass('showa');
-      return false;
-    }
-  }
-  products.push(product);
-  return true;
 }
 
 var updateProducts = function () {
@@ -93,9 +80,9 @@ $('.view-cart').on('click', function () {
   $('.shopping-cart').toggleClass('show');
 });
 
-$('.view-manager').on('click' ,function() {
-  $('.create-item').toggleClass('show');
-});
+// $('.view-manager').on('click' ,function() {
+//   $('.create-item').toggleClass('show');
+// });
 
 $('.row').on('click', '.add-to-cart', function () {
   var name = $(this).parent().parent().data().name;
@@ -119,25 +106,7 @@ $('.cart-list').on('click','.item-remove', function() {
 	removeItem(index);
 });
 
-$('.submit-product').on('click', function() {
-  //getting information from the form
-  var name = $(this).parent().find('#product-name').val();
-  var price = $(this).parent().find('#product-price').val();
-  var url = $(this).parent().find('#product-img').val();
-  var prod = {name:name,price:price,url:url};
 
-  $('.showa').toggleClass('showa');
-  var success = addProduct(prod);
-  updateProducts();
-
-  // cleaning the form
-  if(success){
-    $(this).parent().find('#product-name').val('');
-    $(this).parent().find('#product-price').val('');
-    $(this).parent().find('#product-img').val('');
-  }
-  
-});
 
 updateCart();
 updateProducts();
