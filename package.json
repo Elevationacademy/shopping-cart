@@ -13,5 +13,14 @@
     "font-awesome": "^4.5.0",
     "handlebars": "^4.0.5",
     "jquery": "^2.2.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sach1810/shopping-cart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sach1810/shopping-cart/issues"
+  },
+  "homepage": "https://github.com/Sach1810/shopping-cart#readme"
 }
