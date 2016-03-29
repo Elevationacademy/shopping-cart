@@ -22,10 +22,14 @@ var getTotal = function(){
 	return total;
 }
 
-
 var addItem = function (item) {
   // TODO: finish
   cart.push(item);
+}
+
+var removeItem = function(index){
+	cart.splice(index,1);
+	updateCart();
 }
 
 var clearCart = function () {
@@ -52,5 +56,9 @@ $('.clear-cart').on('click', function () {
   clearCart();
 });
 
+$('.cart-list').on('click','.item-remove', function() {
+	var index = $(this).parent().index();
+	removeItem(index);
+});
 // update the cart as soon as the page loads!
 updateCart();
