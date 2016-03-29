@@ -13,7 +13,6 @@ var updateCart = function () {
     totalPrice += cart[i].price;
     $('.cart-list').append(item);
   }
-  console.log(totalPrice);
  
   $('.total').html(totalPrice);
 }
@@ -32,6 +31,17 @@ var clearCart = function () {
   cart = [];
 }
 
+var removeObject = function (currentItem) {
+  var $clickedItem = $(currentItem).closest('.cartItem');
+  console.log($(currentItem).closest('.cartItem'));
+  var index = $clickedItem.index();
+
+  cart.splice(index, 1);
+  $clickedItem.remove();
+}
+
+// EVENTS
+
 $('.view-cart').on('click', function () {
   $('.shopping-cart').toggleClass('show');
   var item = $(this).closest("item").data('name');
@@ -49,6 +59,11 @@ $('.add-to-cart').on('click', function () {
 
 $('.clear-cart').on('click', function () {
   clearCart();
+});
+
+
+$('.removeItem').on('click', function() {
+  removeObject(this);
 });
 
 // update the cart as soon as the page loads!
