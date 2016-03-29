@@ -81,7 +81,12 @@ var updateProducts = function () {
     var newHtml = template(products[i]);
     $('.row').append(newHtml);
   }
+}
 
+var removeProduct = function (product){
+  var index  = product.index();
+  products.splice(index,1);
+  updateProducts();
 }
 
 $('.view-cart').on('click', function () {
@@ -99,6 +104,10 @@ $('.row').on('click', '.add-to-cart', function () {
 
   addItem(item);
   updateCart();
+});
+
+$('.row').on('click', '.deletebox', function () {
+  removeProduct($(this).closest('.col-md-4'));
 });
 
 $('.clear-cart').on('click', function () {
