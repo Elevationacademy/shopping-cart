@@ -28,6 +28,15 @@ body {
   text-align: center;
 }
 
+.deletebox {
+  height: 50px;
+  width: 44px;
+  position: absolute;
+  background-color: #999966;
+  display: table;
+  right: 0;
+}
+
 .buybox {
   height: 50px;
   width: 100%;
@@ -91,15 +100,43 @@ body {
   z-index: 999;
 }
 
+.create-item,.search-item{
+  background-color: #fff;
+  box-shadow: 2px 2px 2px #B3B3B3;
+  padding: 15px;
+  z-index: 998;
+}
+
 .cart-title {
   text-align: center;
   font-weight: bold;
 }
 
+
 .show {
   display: block;
 }
 
+
 .clear-cart {
   width: 100%;
+}
+
+.create-title,.search-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.error {
+  display: none;
+  background-color: red;
+  color: white;
+}
+
+.showa {
+  display: block;
+}
+
+.item-form, .search-form {
+  display: none;
 }
