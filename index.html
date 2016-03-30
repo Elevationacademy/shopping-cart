@@ -5,9 +5,6 @@
   <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
   <title>Shopping Cart!</title>
 </head>
 <body>
@@ -43,16 +40,23 @@
   <div class="container">
     <div class="shopping-cart">
       <p class="cart-title">Items in Cart</p>
-      <div class="cart-list"></div>
+	      <div class="cart-list"></div>
       <p>Total: $<span class="total">0</span></p>
       <button class="btn clear-cart">Clear Cart</button>
     </div>
 
+    	<script id="cart-template" type="text/x-handlebars-template">
+		    	{{#each cart}}
+			    	{{name}} - ${{price}}
+						<br>
+			    {{/each}}
+
+   	  </script>
 
     <div class="row">
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="glass" data-price="68">
+          <div class="card item" data-name="glass" data-price="68">
             <div class="pricebox">
               <p class="price"> $68 </p>
             </div>
@@ -68,7 +72,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="pencils" data-price="3">
+          <div class="card item" data-name="pencils" data-price="3">
             <div class="pricebox">
               <p class="price"> $3 </p>
             </div>
@@ -84,7 +88,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="kinfolk" data-price="21">
+          <div class="card item" data-name="kinfolk" data-price="21">
             <div class="pricebox">
               <p class="price"> $21 </p>
             </div>
@@ -103,7 +107,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="book" data-price="25">
+          <div class="card item" data-name="book" data-price="25">
             <div class="pricebox">
               <p class="price"> $25 </p>
             </div>
@@ -119,7 +123,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="pipe" data-price="124">
+          <div class="card item" data-name="pipe" data-price="124">
             <div class="pricebox">
               <p class="price"> $124 </p>
             </div>
@@ -135,7 +139,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="stool" data-price="92">
+          <div class="card item" data-name="stool" data-price="92">
             <div class="pricebox">
               <p class="price"> $92 </p>
             </div>
@@ -151,6 +155,9 @@
     </div>
   </div>
 
+  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
