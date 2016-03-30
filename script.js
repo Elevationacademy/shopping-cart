@@ -1,6 +1,7 @@
-// an array with all of our cart items
 var cart = [];
 var total = 0;
+var cartState = {};
+updateFromLocalStorage();
 
 var updateCart = function () {
 
@@ -23,6 +24,8 @@ var addItem = function (item) {
 	cart.push(item);
 	total += item.price;
 
+	storeToLocalStorage();
+
 	updateCart();
 }
 
@@ -30,6 +33,7 @@ var clearCart = function () {
   cart = [];
   total = 0;
   updateCart();
+  localStorage.clear();
 }
 
 $('.view-cart').on('click', function () {
@@ -53,6 +57,23 @@ $('.add-to-cart').on('click', function () {
 $('.clear-cart').on('click', function () {
   clearCart();
 });
+
+function updateFromLocalStorage(){
+	
+	var ls = JSON.parse(localStorage.getItem("cartStatus") || '[]');
+	if(ls.length != 0){
+		cart = ls.updatedCart;
+		total = ls.updatedTotal;
+	}
+}
+
+function storeToLocalStorage(){
+	
+	cartState.updatedCart = cart;
+	cartState.updatedTotal = total;
+
+	localStorage.cartStatus = JSON.stringify(cartState);
+}
 
 // update the cart as soon as the page loads!
 updateCart();
