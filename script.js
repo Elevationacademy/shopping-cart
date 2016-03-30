@@ -1,35 +1,41 @@
-// an array with all of our cart items
 var cart = [];
-var $cart = $('.cart-list');
+var STORAGE_ID = 'shoppingCart';
+var getFromLocalStorage = function () {
+  return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+}
+
+cart = getFromLocalStorage();
 
 var updateCart = function () {
-  $cart.empty();
-  var source = $('#cart-template').html();
-  var template = Handlebars.compile(source);
-  var totalPrice = 0;
+  $('.cart-list').empty();
+  $('.total').html('0');
 
-  for (var i = 0; i < cart.length; i++) {
-    var item = template(cart[i]);
-    totalPrice += cart[i].price;
-    $('.cart-list').append(item);
+  for (var i = 0; i < cart.length; i ++) {
+    var template = Handlebars.compile($('#cart-template').html())
+    var newItem = template(cart[i]);
+
+    $('.cart-list').append(newItem);
+    $('.total').html(calculateTotal());
   }
-  $('.total').html(totalPrice);
   removeObj();
-  
 }
 
-var addItem = function (item, price) {
-  var stuff = { 
-  item: item,
-  price: price
+var calculateTotal = function () {
+  var total = 0;
+  for (var i = 0; i < cart.length; i ++) {
+    total += cart[i].price;
   }
-  cart.push(stuff)
+
+  return total;
 }
 
-var clearCart = function () {
-  $cart.empty();
-  $('.total').html(0);
-  cart = [];
+var saveToLocalStorage = function () {
+  localStorage.setItem(STORAGE_ID, JSON.stringify(cart));
+}
+
+var addItem = function (item) {
+  cart.push(item);
+  saveToLocalStorage(item);
 }
 
 var removeObject = function (currentItem) {
@@ -37,27 +43,22 @@ var removeObject = function (currentItem) {
   var index = $clickedItem.index();
   cart.splice(index, 1);
   $clickedItem.remove();
+  saveToLocalStorage();
 }
 
-// EVENTS
+var clearCart = function () {
+  cart = [];
+  updateCart();
+}
 
 $('.view-cart').on('click', function () {
   $('.shopping-cart').toggleClass('show');
-  var item = $(this).closest("item").data('name');
-  var price = $(this).closest("item").data('price');
-  updateCart();
 });
 
 $('.add-to-cart').on('click', function () {
-  // TODO: get the "item" object from the page
-  var item = $(this).closest('.item').data('name');
-  var price = $(this).closest('.item').data('price');
-  addItem(item, price);
+  var item = $(this).closest('.item').data();
+  addItem(item);
   updateCart();
-});
-
-$('.clear-cart').on('click', function () {
-  clearCart();
 });
 
 var removeObj = function() {
@@ -67,5 +68,8 @@ var removeObj = function() {
   });
 };
 
-// update the cart as soon as the page loads!
+$('.clear-cart').on('click', function () {
+  clearCart();
+});
+
 updateCart();
