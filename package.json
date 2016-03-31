@@ -1,5 +1,5 @@
 {
-  "name": "shoppingcart",
+  "name": "s",
   "version": "1.0.0",
   "description": "for shopping!",
   "main": "script.js",
@@ -13,5 +13,13 @@
     "font-awesome": "^4.5.0",
     "handlebars": "^4.0.5",
     "jquery": "^2.2.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronywan/shopping-cart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ronywan/shopping-cart/issues"
+  },
+  "homepage": "https://github.com/ronywan/shopping-cart#readme"
 }
