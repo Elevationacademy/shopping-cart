@@ -44,7 +44,7 @@
     <div class="shopping-cart">
       <p class="cart-title">Items in Cart</p>
       <div class="cart-list"></div>
-      <p>Total: $<span class="total">0</span></p>
+      <p style="font-weight: bold;">Total: $<span class="total">0</span></p>
       <button class="btn clear-cart">Clear Cart</button>
     </div>
 
@@ -151,6 +151,14 @@
     </div>
   </div>
 
+  <script id="menu-template" type="text/x-handlebars-template">
+    <div>
+      {{#each cart}}
+        <p>{{name}} - ${{price}}</p>
+      {{/each}}
+    </div>
+  </script>
+  
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
