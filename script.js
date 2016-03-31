@@ -11,6 +11,8 @@ var updateCart = function () {
   $('.total').html('0');
 
   for (var i = 0; i < cart.length; i ++) {
+    // Check each one's quantity. if more than 1, add a visual cue.
+
     var template = Handlebars.compile($('#cart-template').html())
     var newItem = template(cart[i]);
 
@@ -34,6 +36,7 @@ var saveToLocalStorage = function () {
 }
 
 var addItem = function (item) {
+  // Before pushing, check if it exists. If it does, update its quantity property, otherwise push as normal.
   cart.push(item);
   saveToLocalStorage(item);
 }
@@ -57,6 +60,7 @@ $('.view-cart').on('click', function () {
 
 $('.add-to-cart').on('click', function () {
   var item = $(this).closest('.item').data();
+  item.quantity = 1; // now each clicked item gets a quantity property
   addItem(item);
   updateCart();
 });
