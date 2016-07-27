@@ -1,5 +1,15 @@
 
 
+  var saveToLocalStorage = function () {
+  localStorage.setItem(STORAGE_ID, JSON.stringify(posts));
+  }
+
+
+ var getFromLocalStorage = function () {
+  return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+  }
+
+
 // an array with all of our cart items
 var cart = {
   items: []
@@ -35,8 +45,19 @@ var addItem = function (item) {
   
   document.getElementById('total').innerHTML = cartTotal;
 
-
+  
   console.log(item)
+}
+
+var removeItem = function (removeItem) {
+  // function to splice out the item that received the button click from the items array
+  
+  
+  $(removeItem).closest(".item-line").remove();
+  // console.log(cart.items.indexOf(this))
+  
+
+  console.log ("remove button selected")
 }
 
 
@@ -58,12 +79,18 @@ $('.add-to-cart').on('click', function () {
   // TODO: get the "item" object from the page
   var item = $(this).closest('.card').data();
   addItem(item);
+  $('.remove-button').bind();
   updateCart();
 });
 
 $('.clear-cart').on('click', function () {
   clearCart();
 });
+
+$('.cart-list').on('click','.remove-button', function () {
+  removeItem(this);
+});
+
 
 // update the cart as soon as the page loads!
 updateCart();
