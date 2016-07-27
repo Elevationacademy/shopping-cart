@@ -26,30 +26,15 @@ var addItem = function (item, price) {
   	name: item,
   	price: price
   }
-  console.log(newItem.name);
-  console.log(newItem.price);
   cart.push(newItem);
+  total += newItem.price;
+  $(".total").text(total);
 };
 
-var calcTotal = function() {
-	$(".total").empty();
-	for (var j = 0; j<cart.length; j++) {
-		total += cart[j].price;
-		var source = $("#item-template").html();
-
-    
-        var template = Handlebars.compile(source);
-
-
-        var newHTML = template(cart[j].price);
-
-
-        $(".total").append(newHTML);
-	}
-}
 
 var clearCart = function () {
-  // TODO: finish
+  $(".cart-list").empty();
+  $(".total").empty();
 }
 
 $('.view-cart').on('click', function () {
@@ -63,7 +48,6 @@ $('.add-to-cart').on('click', function (item, price) {
   var price = $(this).closest('.card').data("price");
   addItem(item, price);
   updateCart();
-  calcTotal(); 
 });
 
 $('.clear-cart').on('click', function () {
