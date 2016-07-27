@@ -1,9 +1,6 @@
 
 
-  var saveToLocalStorage = function () {
-  localStorage.setItem(STORAGE_ID, JSON.stringify(posts));
-  }
-
+ var STORAGE_ID = 'shopping-cart';
 
  var getFromLocalStorage = function () {
   return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
@@ -12,8 +9,14 @@
 
 // an array with all of our cart items
 var cart = {
-  items: []
+  items: getFromLocalStorage ()
 };
+
+
+  var saveToLocalStorage = function () {
+  localStorage.setItem(STORAGE_ID, JSON.stringify(cart.items));
+  }
+
 
 var cartTotal = 0;
 
@@ -42,6 +45,7 @@ var addItem = function (item) {
   cartTotal += item.price;
 
   cart.items.push(item);
+  saveToLocalStorage();
   
   document.getElementById('total').innerHTML = cartTotal;
 
