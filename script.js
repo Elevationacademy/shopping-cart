@@ -4,24 +4,28 @@
 
  var getFromLocalStorage = function () {
   return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+
   }
 
 
 // an array with all of our cart items
-var cart = {
-  items: getFromLocalStorage ()
-};
+  var cart = {
+    items: getFromLocalStorage ()
+  };
 
 
   var saveToLocalStorage = function () {
   localStorage.setItem(STORAGE_ID, JSON.stringify(cart.items));
+  localStorage.setItem('cartTotal', cartTotal);
   }
 
 
-var cartTotal = 0;
+  var cartTotal = Number(localStorage.getItem('cartTotal'));
+  document.getElementById('total').innerHTML = cartTotal;
 
-var updateCart = function () {
-  // // TODO: finish
+
+  var updateCart = function () {
+    // // TODO: finish
 
   var $cart = $('.cart-list');
   $cart.empty();
@@ -42,26 +46,38 @@ var addItem = function (item) {
   
   var itemName = item.name;
   var itemPrice = item.price;
-  cartTotal += item.price;
+  cartTotal += item.price;  
+
+
+  
+  document.getElementById('total').innerHTML = cartTotal;
+
+  // for (i = 0; i < cart.items; i ++) {
+  //   cartTotal += cart.items[i].itemPrice;
+  // }
 
   cart.items.push(item);
   saveToLocalStorage();
   
-  document.getElementById('total').innerHTML = cartTotal;
+
+  
 
   
   console.log(item)
 }
 
-var removeItem = function (removeItem) {
+var removeItem = function (passedIndex) {
   // function to splice out the item that received the button click from the items array
-  
-  
-  $(removeItem).closest(".item-line").remove();
-  // console.log(cart.items.indexOf(this))
-  
 
-  console.log ("remove button selected")
+  // console.log("item price to subtract is " + cart.items[0].price);
+ 
+  cartTotal -= cart.items[passedIndex].price;
+  cart.items.splice(passedIndex ,1);
+  console.log(cart.items);
+  // $(this).closest(".cart-item-wrapper").remove();
+  
+  document.getElementById('total').innerHTML = cartTotal;
+  saveToLocalStorage();
 }
 
 
@@ -71,6 +87,7 @@ var clearCart = function () {
   $cart.empty();
   cartTotal = 0;
   document.getElementById('total').innerHTML = cartTotal;
+  saveToLocalStorage();
 }
 
 $('.view-cart').on('click', function () {
@@ -92,7 +109,11 @@ $('.clear-cart').on('click', function () {
 });
 
 $('.cart-list').on('click','.remove-button', function () {
-  removeItem(this);
+  // var item = $(this).getFromLocalStorage ()
+  // var item = $(this).closest('.card').data();
+  var index = $(this).closest('.cart-item-wrapper').index();
+  removeItem(index);
+  updateCart();
 });
 
 
