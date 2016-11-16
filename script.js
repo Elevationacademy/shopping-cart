@@ -1,25 +1,40 @@
-// an array with all of our cart items
-var cart = [];
+var obj = {cart: []};
+var total = 0
+
 
 var updateCart = function () {
-  // TODO: finish
+  $('.cart-list').empty()
+  $('.total').empty ()
+  total = 0
+  for (i=0; i<obj.cart.length; i++) {
+    total = total + obj.cart[i].price
+  }
+  var source = $('#items').html();
+  var template = Handlebars.compile(source);
+  var newHTML = template(obj);
+  $('.cart-list').append(newHTML);
+  $('.total').append(total)
 }
 
-
-var addItem = function (item) {
-  // TODO: finish
+var addItem = function (x) {
+  obj.cart.push(x)
 }
 
 var clearCart = function () {
-  // TODO: finish
+  obj.cart.length = 0;
+  updateCart();
 }
 
 $('.view-cart').on('click', function () {
-  // TODO: hide/show the shopping cart!
+  $('.shopping-cart').toggleClass('show')
 });
 
 $('.add-to-cart').on('click', function () {
-  // TODO: get the "item" object from the page
+  // *******works, but is this the best way???
+  item = {
+    name : $($(this.closest('.card')).data().name).selector,
+    price : $($(this.closest('.card')).data().price)[0]
+  }
   addItem(item);
   updateCart();
 });

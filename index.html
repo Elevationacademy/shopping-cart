@@ -36,7 +36,15 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-  <div class="page-header">
+<script id="items" type="text/x-handlebars-template">
+  <ul>
+    {{#cart}}
+      <li>{{name}} - ${{price}}</li>
+    {{/cart}}
+  </ul>
+</script>
+
+  <div class="page-header">   
     <h1>SHOPPING CART</h1>
   </div>
 
