@@ -1,27 +1,48 @@
-var obj = {cart: []};
-var total = 0
-
+var cart = [];
 
 var updateCart = function () {
   $('.cart-list').empty()
-  $('.total').empty ()
-  total = 0
-  for (i=0; i<obj.cart.length; i++) {
-    total = total + obj.cart[i].price
-  }
+
   var source = $('#items').html();
   var template = Handlebars.compile(source);
-  var newHTML = template(obj);
-  $('.cart-list').append(newHTML);
+
+  for (i=0; i < cart.length; i ++){  
+    var newHTML = template(cart[i]);
+    $('.cart-list').append(newHTML);
+  } 
+
+  $('.total').empty ()
+  var total = 0
+
+  for (i=0; i<cart.length; i++) {
+    total = total + (cart[i].price*cart[i].amount)
+  }
+
   $('.total').append(total)
 }
 
 var addItem = function (x) {
-  obj.cart.push(x)
+  var exists = false;
+
+  for(var i = 0; i < cart.length; i ++){
+    if(cart[i].name === x.name){
+      exists = true;
+      cart[i].amount += 1;
+    }
+  }
+
+  if(!exists){
+    cart.push(x)
+  }
+}
+
+var eraseItem = function (num) {
+  cart.splice(num, 1);
+  updateCart();
 }
 
 var clearCart = function () {
-  obj.cart.length = 0;
+  cart.length = 0;
   updateCart();
 }
 
@@ -30,18 +51,24 @@ $('.view-cart').on('click', function () {
 });
 
 $('.add-to-cart').on('click', function () {
-  // *******works, but is this the best way???
   item = {
-    name : $($(this.closest('.card')).data().name).selector,
-    price : $($(this.closest('.card')).data().price)[0]
+    name : $(this).closest('.card').data().name,
+    price : $(this).closest('.card').data().price,
+    amount: 1
   }
+
   addItem(item);
   updateCart();
+});
+
+$('.cart-list').on('click', '.del-item',function () {
+  var index = $(this).closest('li').index()
+  $(this).closest('li').remove();
+  eraseItem(index);
 });
 
 $('.clear-cart').on('click', function () {
   clearCart();
 });
 
-// update the cart as soon as the page loads!
 updateCart();

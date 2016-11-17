@@ -15,6 +15,7 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
+        <!-- *** didn't understand this part -->
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -36,13 +37,6 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-<script id="items" type="text/x-handlebars-template">
-  <ul>
-    {{#cart}}
-      <li>{{name}} - ${{price}}</li>
-    {{/cart}}
-  </ul>
-</script>
 
   <div class="page-header">   
     <h1>SHOPPING CART</h1>
@@ -51,7 +45,7 @@
   <div class="container">
     <div class="shopping-cart">
       <p class="cart-title">Items in Cart</p>
-      <div class="cart-list"></div>
+      <ul class="cart-list"></ul>
       <p>Total: $<span class="total">0</span></p>
       <button class="btn clear-cart">Clear Cart</button>
     </div>
@@ -60,7 +54,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="glass" data-price="68">
+          <div class="card item" data-name="glass" data-price="68">
             <div class="pricebox">
               <p class="price"> $68 </p>
             </div>
@@ -76,7 +70,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="pencils" data-price="3">
+          <div class="card item" data-name="pencils" data-price="3">
             <div class="pricebox">
               <p class="price"> $3 </p>
             </div>
@@ -92,7 +86,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="kinfolk" data-price="21">
+          <div class="card item" data-name="kinfolk" data-price="21">
             <div class="pricebox">
               <p class="price"> $21 </p>
             </div>
@@ -111,7 +105,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="book" data-price="25">
+          <div class="card item" data-name="book" data-price="25">
             <div class="pricebox">
               <p class="price"> $25 </p>
             </div>
@@ -127,7 +121,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="pipe" data-price="124">
+          <div class="card item" data-name="pipe" data-price="124">
             <div class="pricebox">
               <p class="price"> $124 </p>
             </div>
@@ -143,7 +137,7 @@
 
       <div class="col-md-4">
         <div class="card-container">
-          <div class="card item" item data-name="stool" data-price="92">
+          <div class="card item" data-name="stool" data-price="92">
             <div class="pricebox">
               <p class="price"> $92 </p>
             </div>
@@ -159,6 +153,18 @@
     </div>
   </div>
 
+<script id="items" type="text/x-handlebars-template">
+  
+
+      <li>
+        <a href="#" class="del-item" role="button">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </a>
+        {{name}} - ${{price}} - ({{amount}})
+      </li>
+
+  
+</script>
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
