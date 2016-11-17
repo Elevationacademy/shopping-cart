@@ -103,3 +103,8 @@ body {
 .clear-cart {
   width: 100%;
 }
+
+.form-group {
+  display: inline-block;
+  width: 30%;
+}

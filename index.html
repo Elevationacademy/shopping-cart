@@ -154,17 +154,16 @@
   </div>
 
 <script id="items" type="text/x-handlebars-template">
-  
+  <li>
+    <a href="#" class="del-item" role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
-      <li>
-        <a href="#" class="del-item" role="button">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </a>
-        {{name}} - ${{price}} - ({{amount}})
-      </li>
-
-  
+    {{name}} - ${{price}} - ({{amount}})
+  </li>
 </script>
+
+<br>
+  <a href="index2.html">Click here to add more items</a>
+<br>
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
