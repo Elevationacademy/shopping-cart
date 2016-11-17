@@ -11,35 +11,45 @@ var cart = [];
 var updateCart = function () {
   //empty cart somehow
   $('.cart-list').empty();
-  var source = $('#cart-template').html();
-  var template = Handlebars.compile(source);
+  // var source = $('#cart-template').html();
+  // var template = Handlebars.compile(source);
   for (var i = 0; i <cart.length; i++){ 
-    var obj = {item: cart[i].name, price: cart[i].price};
+    var source = $('#cart-template').html();
+    var template = Handlebars.compile(source);
+    var obj = {item: cart[i].name, quantity: cart[i].quantity, price: cart[i].price};
     newHTML = template(obj);
     $('.cart-list').append(newHTML);
+    $('.total').html(total);
   }
-  // var total = 50;
-  //   $('.total').append(total);
 };
 
+var total = 0;
+
 var addItem = function (item) {
- // cart.push(item);
-  // write a function that checks if the item exists, if not, add it. if exists, item++
-  // empty 
-  //Conditoin A: if the cart array is empty add to cartond
-  //condition B: if the item exists, increase item's occurrence
-  
-  for(var i = 0; i < cart.length; i++){
-   var itemExist = cart.item;
-   if(cart.length === 0){
+  // check if the item exists in the array, if it doesn't
+  var exists = false;
+
+  for(var i = 0; i < cart.length; i ++){
+    // if card item name is = to an item in the array already  (if card item exists once)
+    if(item.name === cart[i].name){
+      cart[i].quantity += 1;
+      total += cart[i].price;
+      exists = true;
+    }
+  }
+  if(exists === false){
     cart.push(item);
-   }
-   
- }
+    total += cart[i].price;
+  }
 };
 
 var clearCart = function () {
   // TODO: finish
+  $('.cart-list').empty();
+  cart = [];
+  $('.total').empty();
+  total = 0;
+  $('.total').html(total);
 };
 
 $('.view-cart').on('click', function () {
@@ -48,9 +58,10 @@ $('.view-cart').on('click', function () {
 
 $('.add-to-cart').on('click', function () {
   // TODO: get the "item" object from the page
-  // var name = $(this).closest('.card.item').data().name;
-  // var price = $(this).closest('.card.item').data().price;
-  var item = $(this).closest('.card.item').data();
+  var name = $(this).closest('.card').data().name;
+  var price = $(this).closest('.card').data().price;
+
+  var item = {name: name, price: price, quantity: 1};
 
   addItem(item);
   updateCart();
