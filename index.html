@@ -5,9 +5,6 @@
   <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
   <title>Shopping Cart!</title>
 </head>
 <body>
@@ -47,8 +44,6 @@
       <p>Total: $<span class="total">0</span></p>
       <button class="btn clear-cart">Clear Cart</button>
     </div>
-
-
     <div class="row">
       <div class="col-md-4">
         <div class="card-container">
@@ -151,6 +146,15 @@
     </div>
   </div>
 
+<script id="cart-template" type="text/x-handlebars-template">
+  <div>
+    <div>{{item}} ({{quantity}}) - ${{price}}</div>
+  </div>
+</script>
+
+  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
