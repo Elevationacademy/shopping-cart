@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
+  <title>Admin Page</title>
+</head>
+<body>
+  <form class="new-items">
+    <div class="new-name form-group">
+      <h2>Add name of new item</h2>
+      <input type="text" class="namenew">
+    </div>  
+    <div class="new-price form-group">
+      <h3>Add price in $</h3>
+      <input type="text" class="pricenew">
+    </div>
+    <div class="new-pic form-group">
+      <h4>insert link for picture</h4>
+      <input type="text" class="imgnew">
+    </div>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary add-item">Add this item!</button>
+  </form>
+
+<div class="newly-posted"></div>
+
+
+<script id="new-item" type="text/x-handlebars-template">
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card-container">
+        <div class="card item" data-name="{{name}}" data-price="{{price}}">
+          <div class="pricebox">
+            <p class="price"> ${{price}}</p>
+          </div>
+          <div class="buybox">
+            <p class="add-to-cart"> ADD TO CART </p>
+          </div>
+          <div class="card-inner">
+            <img src="{{img}}" class="proimage">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</script>
+
+<script type="text/javascript" src="adminscript.js"></script>
+</body>
+</html>
