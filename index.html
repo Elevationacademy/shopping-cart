@@ -5,9 +5,7 @@
   <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
+
   <title>Shopping Cart!</title>
 </head>
 <body>
@@ -21,6 +19,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+
         <a class="navbar-brand" href="#">SHOPPING CART</a>
       </div>
 
@@ -28,6 +27,8 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="admin-link" data-toggle="dropdown" role="button">Admin <i class="fa fa-cog"></i></a></li>
           <li class="dropdown">
             <a href="#" class="view-cart" data-toggle="dropdown" role="button">Shopping Cart <i class="fa fa-shopping-cart"></i></a>
           </li>
@@ -35,6 +36,23 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+
+<div class="container admin collapse-in">
+  <div class=" jumbotron col-md-6">
+    <h2> Admin </h2>
+    <h3>Add a product: </h3>
+     <form class="form-group">
+       <p>Product Name <input id="pname" type="text" name="pname" value="" placeholder="Product Name"></p>
+       <p>Product price <input id="pprice" type="text" name="pprice" value="" placeholder="Product Price"></p>
+       <p>Picture <input id="ppic" type="text" name="ppic" value="" placeholder="Product picture URL"></p>
+       <button type="button" class="btn btn-info" name="button">submit</button>
+  </div>
+  <div class="preview">
+
+  </div>
+</div>
+
+
 
   <div class="page-header">
     <h1>SHOPPING CART</h1>
@@ -46,6 +64,7 @@
       <div class="cart-list"></div>
       <p>Total: $<span class="total">0</span></p>
       <button type="button" class="btn clear-cart">Clear Cart</button>
+
     </div>
 
 
@@ -57,7 +76,7 @@
               <p class="price"> $68 </p>
             </div>
             <div class="buybox">
-              <p class="add-to-cart"> ADD TO CART </p>
+              <p class="add-to-cart"> ADD TO CART </p> <!--this is a button-->
             </div>
             <div class="card-inner">
               <img src="http://ecx.images-amazon.com/images/I/31AOX24ATKL.jpg" class="proimage">
@@ -98,7 +117,7 @@
         </div>
       </div>
 
-    
+
     </div>
     <div class="row">
       <div class="col-md-4">
@@ -150,7 +169,25 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="node_modules/handlebars/dist/handlebars.min.js"></script>
+  <script type="text/javascript" src="amazon.js"></script>
+  <script id = "preview-template" type = "text/x-handlebars-template">
+   <div class='jumbotron'>
+     <h1>Preview:</h1>
+     <p>name:{{name}}</p>
+     <h2>price: {{price}}</h2>
+     <img src="{{image}}">
+   </div>
+  </script>
 
-  <script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="updateCart.js"></script>
+<script type="text/javascript" src="addItem.js"></script>
+<script type="text/javascript" src="clearCart.js"></script>
+<script type="text/javascript" src="view-cart.js"></script>
+<script type="text/javascript" src="add-to-cart.js"></script>
+<script type="text/javascript" src="view-admin.js"></script>
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
