@@ -103,3 +103,8 @@ body {
 .clear-cart {
   width: 100%;
 }
+
+#cart-items {
+    padding: 0;
+    list-style-type: none;
+}
