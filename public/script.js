@@ -1,4 +1,4 @@
-// an array with all of our cart items
+// an array with all of our cart items....
 var cart = [];
 
 var updateCart = function () {
