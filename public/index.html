@@ -40,7 +40,9 @@
   <div class="container">
     <div class="shopping-cart">
       <p class="cart-title">Items in Cart</p>
-      <div class="cart-list"></div>
+      <div class="cart-list">
+
+      </div>
       <p>Total: $<span class="total">0</span></p>
       <button type="button" class="btn clear-cart">Clear Cart</button>
     </div>
@@ -147,7 +149,12 @@
       </div>
     </div>
   </div>
-    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+
+  <script id="cart-template" type="text/x-handlebars-template">
+    <p>{{name}} - ${{price}}</p>
+  </script>
+
+  <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="handlebars/dist/handlebars.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
