@@ -6,7 +6,7 @@ var updateCart = function () {
   // Meaning we make sure that all our cart items are displayed in the browser.
   // Remember to empty the "cart div" before you re-add all the item elements.
 }
-
+  
 
 var addItem = function (item) {
   // TODO: Write this function. Remember this function has nothing to do with display. 
