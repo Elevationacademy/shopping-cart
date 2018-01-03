@@ -147,6 +147,11 @@
       </div>
     </div>
   </div>
+   
+   <script id="add-item-to-cart" type="text/x-handlebars-template">
+       <p class="new-item" data-name="{{name}}" data-price ="{{price}}" data-quantity = "{{quantity}}">{{name}}({{quantity}}): $<span>{{price}}</span> <button class="btn btn-danger remove-item"><i class="fa fa-trash"></i></button></p>
+   </script>
+   
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="handlebars/dist/handlebars.min.js"></script>
