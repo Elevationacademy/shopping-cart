@@ -3,6 +3,7 @@ var cart = [];
 
 var updateCart = function () {
   $('.cart-list').empty();
+  if(cart.length > 0) {
   var total = 0;
   var source = $('#cart-item').html();
   var template = Handlebars.compile(source);
@@ -12,6 +13,7 @@ var updateCart = function () {
     total += (cart[i].price * cart[i].amount);
   }
   $('.total').text(total);
+}
 }
 
 var addItem = function (item) {
