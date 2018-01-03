@@ -3,14 +3,15 @@ var cart = [];
 
 var updateCart = function () {
   $('.cart-list').empty();
-  if(cart.length > 0) {
-  var total = 0;
-  var source = $('#cart-item').html();
-  var template = Handlebars.compile(source);
-  for (var i = 0; i < cart.length; i++) {
-    var cartItem = template(cart[i]);
-    $('.cart-list').append(cartItem);
-    total += (cart[i].price * cart[i].amount);
+      var total = 0;
+  if (cart.length > 0) {
+      var source = $('#cart-item').html();
+      var template = Handlebars.compile(source);
+      for (var i = 0; i < cart.length; i++) {
+          var cartItem = template(cart[i]);
+          $('.cart-list').append(cartItem);
+          total += cart[i].price;
+      }
   }
   $('.total').text(total);
 }

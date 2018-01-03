@@ -8,44 +8,44 @@
   <title>Shopping Cart!</title>
 </head>
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">SHOPPING CART</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="view-cart" data-toggle="dropdown" role="button">Shopping Cart <i class="fa fa-shopping-cart"></i></a>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-  <div class="page-header">
-    <h1>SHOPPING CART</h1>
-  </div>
-
-  <div class="container">
-    <div class="shopping-cart">
-      <p class="cart-title">Items in Cart</p>
-      <div class="cart-list"></div>
-      <p>Total: $<span class="total">0</span></p>
-      <button type="button" class="btn clear-cart">Clear Cart</button>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">SHOPPING CART</a>
     </div>
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="view-cart" data-toggle="dropdown" role="button">Shopping Cart <i class="fa fa-shopping-cart"></i></a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="page-header">
+  <h1>SHOPPING CART</h1>
+</div>
+
+<div class="container">
+  <div class="shopping-cart">
+    <p class="cart-title">Items in Cart</p>
+    <div class="cart-list"></div>
+    <p>Total: $<span class="total">0</span></p>
+    <button type="button" class="btn clear-cart">Clear Cart</button>
+  </div>
+
+  <div class="item-list">
     <div class="row">
       <div class="col-md-4">
         <div class="card-container">
@@ -95,7 +95,7 @@
         </div>
       </div>
 
-    
+
     </div>
     <div class="row">
       <div class="col-md-4">
@@ -147,10 +147,57 @@
       </div>
     </div>
   </div>
-    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="handlebars/dist/handlebars.min.js"></script>
-  <script type="text/javascript" src="script.js"></script>
+  <div class="row new-listings">
+
+  </div>
+  <div class="new-item">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card-container">
+          <div class="card item">
+            <div class="pricebox">
+              <p class="price"> $$$ </p>
+            </div>
+            <div class="buybox">
+              <p class="add-new-item"> ADD NEW ITEM </p>
+            </div>
+            <div class="card-inner">
+              <img src="http://crushapps.com/ikiru/instructions/watch_add_item.png" class="proimage">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h1> Add New Item</h1>
+    <div class="new-item-name-label">Price:<input class="new-item-name" type="text" placeholder="Table"></div>
+    <div class="new-item-price-label">Price:<input class="new-item-price" type="number" placeholder="70"></div>
+    <div class="new-item-image-label">Image Link:<input class="new-item-image-link" type="text" placeholder="Http://my.site.com/image.jpg"></div>
+
+    <button class="btn add-new-item">Add New Item</button>
+  </div>
+
+</div>
+
+<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="handlebars/dist/handlebars.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="addItem.js"></script>
 
 
   <script id="cart-item" type="text/x-handlebars-template">
@@ -160,6 +207,23 @@
     </p>
   </script>
 
+<script id="list-item" type="text/x-handlebars-template">
+  <div class="col-md-4">
+    <div class="card-container">
+      <div class="card item" item data-name="{{name}}" data-price="{{price}}">
+        <div class="pricebox">
+          <p class="price"> {{price}} </p>
+        </div>
+        <div class="buybox">
+          <p class="add-to-cart"> ADD TO CART </p>
+        </div>
+        <div class="card-inner">
+          <img src="{{image-link}}" class="proimage">
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
 
 
 </body>
