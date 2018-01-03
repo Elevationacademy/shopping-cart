@@ -201,10 +201,10 @@
 
 
   <script id="cart-item" type="text/x-handlebars-template">
-
-    <p>{{name}} - ${{price}}</p>
-
-
+    <p data-name='{{name}}'>{{name}} ({{amount}}) - ${{price}} 
+      <a href="#" class="remove-cart-item">
+      <i class="fa fa-times-circle"></a></i>
+    </p>
   </script>
 
 <script id="list-item" type="text/x-handlebars-template">

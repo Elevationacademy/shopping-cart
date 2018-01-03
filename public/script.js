@@ -15,13 +15,22 @@ var updateCart = function () {
   }
   $('.total').text(total);
 }
+}
 
 var addItem = function (item) {
-  var newItem = {
-    name: item.children('.card').data().name,
-    price: item.children('.card').data().price
+  var name = item.children('.card').data().name;
+  var isInCart = _checkIfItemIsInCart(name);
+  if (isInCart) {
+    var index = _getIndexByName(name);
+    cart[index].amount = ++cart[index].amount;
+  } else {
+    var newItem = {
+      name: item.children('.card').data().name,
+      price: item.children('.card').data().price,
+      amount: 1
+    }
+    cart.push(newItem);
   }
-  cart.push(newItem);
 }
 
 var clearCart = function () {
@@ -29,8 +38,30 @@ var clearCart = function () {
   updateCart();
 }
 
+var removeCartItem = function(item) {
+  var index = _getIndexByName(item.parent().data().name);
+  cart.splice(index, 1);
+  updateCart();
+}
+
+var _checkIfItemIsInCart = function (item) {
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].name === item) {
+      return true;
+    }
+  }
+  return false;
+}
+
+var _getIndexByName = function (name) {
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].name === name) {
+      return i;
+    }
+  }
+}
 $('.view-cart').on('click', function () {
-  $('.shopping-cart').toggle();
+  $('.shopping-cart').toggleClass('show');
 });
 
 $('.add-to-cart').on('click', function () {
@@ -41,6 +72,10 @@ $('.add-to-cart').on('click', function () {
 
 $('.clear-cart').on('click', function () {
   clearCart();
+});
+
+$('.shopping-cart').on('click', '.remove-cart-item', function() {
+removeCartItem($(this));
 });
 
 // update the cart as soon as the page loads!
