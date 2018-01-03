@@ -2,10 +2,7 @@
 var cart = [];
 
 var updateCart = function () {
-  // TODO: Write this function. In this function we render the page.
-  // Meaning we make sure that all our cart items are displayed in the browser.
-  // Remember to empty the "cart div" before you re-add all the item elements.
-   // clearCart();
+
     var $cartList = $('.cart-list');
     var $total = $('.total');
     //clearing data before render back the cart array 
@@ -17,14 +14,43 @@ var updateCart = function () {
     var totalAmount = 0;
     for(var i=0;i<cart.length;i++){
         var newHtml = template(cart[i]);
-        totalAmount += cart[i].price;
+        totalAmount += cart[i].price * cart[i].quantity;
         $cartList.append(newHtml);
     }
     $total.text(totalAmount);
 }
 
 var addItem = function (item) {
-  cart.push(item);
+    var isExist = false;
+    //looping to check if item already exist on the cart 
+    for(var i=0;i<cart.length;i++){
+        if(cart[i].name === item.name){
+            isExist = true;
+            cart[i].quantity++;
+        }
+    }
+    if(!isExist){
+         var cartItem = {
+             name : item.name,
+             price : item.price,
+             quantity : 1
+         };
+    cart.push(cartItem);
+    }
+}
+
+
+var removeItem = function(item){
+    var index;
+     for(var i=0;i<cart.length;i++){
+        if(cart[i].name === item.name){
+            cart[i].quantity--;
+            index = i;
+        }
+    }
+   if(cart[index].quantity === 0 ){
+       cart.splice(index,1);
+    }
 }
 
 var clearCart = function () {
@@ -51,8 +77,25 @@ $('.add-to-cart').on('click', function () {
   updateCart();
 });
 
+
+
 $('.clear-cart').on('click', function () {
   clearCart();
+});
+
+$('.shopping-cart').on('click','.remove-item',function(){
+    
+    var $selectedItem = $(this).closest('.new-item');
+    var currentItem  = { 
+        name : $selectedItem.data("name"),
+        price : $selectedItem.data("price"),
+        quantity: $selectedItem.data("quantity")
+    };
+    
+    removeItem(currentItem);
+    updateCart();
+    
+    
 });
 
 // update the cart as soon as the page loads!
