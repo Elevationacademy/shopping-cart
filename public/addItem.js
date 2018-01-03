@@ -17,20 +17,47 @@ function closeModal() {
     $('.new-item-price').val("");
     $('.new-item-name').val("");
     $('.new-item-image-link').val("");
+
+
 }
 
 
-$('.add-new-item-listing').click(function(){
-    console.log("new item Click");
+function createNewItemByTemplate(newItem) {
+    var source = $('#list-item').html();
+    var template = Handlebars.compile(source);
+    var listingItem = template((newItem));
+    return listingItem;
+}
+
+function newListingObj(price, name, imageLink) {
+    var newItem = {'price': price, 'name': name, 'image-link': imageLink};
+    return newItem;
+}
+
+function renderList() {
+    var $newListings = $('.new-listings');
+    $newListings.empty();
+    for (i=0; i<newListings.length;i++) {
+        var listingItem = createNewItemByTemplate(newListings[i]);
+        $newListings.append(listingItem);
+    }
+}
+
+function onAddNewListingClick() {
     var price = $('.new-item-price').val();
     var name = $('.new-item-name').val();
     var imageLink = $('.new-item-image-link').val();
-    var source = $('#list-item').html();
-    var template = Handlebars.compile(source);
-    var newItem = {'price':price, 'name':name, 'image-link':imageLink};
-    // newListings.push(newItem); TODO when adding render or reload maintain and update the array
 
-    var listingItem = template((newItem));
-    $('.new-listings').append(listingItem);
+    var newItem = newListingObj(price, name, imageLink);
+
+    newListings.push(newItem);
+
+    renderList();
+
     closeModal();
+
+}
+
+$('.add-new-item-listing').click(function(){
+    onAddNewListingClick();
 });
