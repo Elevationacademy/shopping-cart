@@ -1,30 +1,26 @@
 newListings = [];
 // Get the modal
-var modal = document.getElementById('myModal');
+var modal = $('#myModal');
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = $(".close").click(function() {
+    closeModal();
+})
 
 // When the user clicks the button, open the modal
-$('.new-item').off();
 $('.new-item').click(function() {
-    modal.style.display = "block";
+    modal.toggle();
 });
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
+function closeModal() {
+    modal.toggle();
+    $('.new-item-price').val("");
+    $('.new-item-name').val("");
+    $('.new-item-image-link').val("");
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-console.log("add item");
 
-$('.add-new-item').click(function(){
+$('.add-new-item-listing').click(function(){
     console.log("new item Click");
     var price = $('.new-item-price').val();
     var name = $('.new-item-name').val();
@@ -36,4 +32,5 @@ $('.add-new-item').click(function(){
 
     var listingItem = template((newItem));
     $('.new-listings').append(listingItem);
-})
+    closeModal();
+});

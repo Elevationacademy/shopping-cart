@@ -151,7 +151,7 @@
 
   </div>
   <div class="new-item">
-    <div class="row">
+    <div class="row text-center">
       <div class="col-md-4">
         <div class="card-container">
           <div class="card item">
@@ -172,10 +172,6 @@
 </div>
 
 
-</div>
-</div>
-</div>
-
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -183,12 +179,18 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h1> Add New Item</h1>
-    <div class="new-item-name-label">Price:<input class="new-item-name" type="text" placeholder="Table"></div>
-    <div class="new-item-price-label">Price:<input class="new-item-price" type="number" placeholder="70"></div>
-    <div class="new-item-image-label">Image Link:<input class="new-item-image-link" type="text" placeholder="Http://my.site.com/image.jpg"></div>
+    <div class="row text-center">
+      <h1> Add New Item</h1>
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="new-item-name-label">Name:<input class="new-item-name" type="text" placeholder="Table"></div>
+        <div class="new-item-price-label">Price($):<input class="new-item-price" type="number" placeholder="70"></div>
+        <div class="new-item-image-label">Image Link:<input class="new-item-image-link" type="text" placeholder="Http://my.site.com/image.jpg"></div>
+    <button class="btn btn-primary add-new-item-listing">Add New Item</button>
+      </div>
+      <div class="col-3"></div>
+    </div>
 
-    <button class="btn add-new-item">Add New Item</button>
   </div>
 
 </div>
@@ -201,9 +203,9 @@
 
 
   <script id="cart-item" type="text/x-handlebars-template">
-    <p data-name='{{name}}'>{{name}} ({{amount}}) - ${{price}} 
+    <p data-name='{{name}}'>{{name}} ({{amount}}) - ${{price}}
       <a href="#" class="remove-cart-item">
-      <i class="fa fa-times-circle"></a></i>
+      <i class="fa fa-times-circle"></i></a>
     </p>
   </script>
 
@@ -212,7 +214,7 @@
     <div class="card-container">
       <div class="card item" item data-name="{{name}}" data-price="{{price}}">
         <div class="pricebox">
-          <p class="price"> {{price}} </p>
+          <p class="price"> ${{price}} </p>
         </div>
         <div class="buybox">
           <p class="add-to-cart"> ADD TO CART </p>
