@@ -10,12 +10,12 @@ var updateCart = function () {
       for (var i = 0; i < cart.length; i++) {
           var cartItem = template(cart[i]);
           $('.cart-list').append(cartItem);
-          total += cart[i].price;
+          total += (cart[i].price * cart[i].amount);
       }
   }
   $('.total').text(total);
 }
-}
+
 
 var addItem = function (item) {
   var name = item.children('.card').data().name;
@@ -60,14 +60,19 @@ var _getIndexByName = function (name) {
     }
   }
 }
+
+var addToCart = function($this) {
+  var item = $this.parent().closest('.card-container');
+  addItem(item);
+  updateCart();
+}
+
 $('.view-cart').on('click', function () {
   $('.shopping-cart').toggleClass('show');
 });
 
 $('.add-to-cart').on('click', function () {
-  var item = $(this).parent().closest('.card-container');
-  addItem(item);
-  updateCart();
+  addToCart($(this));
 });
 
 $('.clear-cart').on('click', function () {
@@ -76,6 +81,10 @@ $('.clear-cart').on('click', function () {
 
 $('.shopping-cart').on('click', '.remove-cart-item', function() {
 removeCartItem($(this));
+});
+
+$('.new-listings').on('click', '.add-to-cart', function() {
+  addToCart($(this));
 });
 
 // update the cart as soon as the page loads!
