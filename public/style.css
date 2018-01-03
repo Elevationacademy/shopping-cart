@@ -47,6 +47,16 @@ body {
   cursor: pointer;
 }
 
+.add-new-item {
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  font-family: Oswald;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
 .card {
   display: table;
   height: 100%;
@@ -102,4 +112,9 @@ body {
 
 .clear-cart {
   width: 100%;
+}
+
+.modal-content {
+  height: 70vh;
+  width: 70vw;
 }
