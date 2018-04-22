@@ -82,7 +82,7 @@ body {
 
 .shopping-cart {
   position: fixed;
-  top: 55px;
+  top: 100px;
   right: 40px;
   display: none;
   background-color: #fff;
