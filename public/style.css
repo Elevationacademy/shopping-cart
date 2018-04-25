@@ -103,3 +103,12 @@ body {
 .clear-cart {
   width: 100%;
 }
+
+
+@media (max-width:740px)
+{
+.view-cart
+{
+  display: none;
+}
+}
