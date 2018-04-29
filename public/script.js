@@ -2,7 +2,7 @@ var ShoppingCart = function () {
 
   // an array with all of our cart items
   var cart = [];
-  var total = 0;
+ 
 
   var updateCart = function () {
     // TODO: Write this function. In this function we render the page.
@@ -13,14 +13,16 @@ var ShoppingCart = function () {
   
     for (let i = 0; i < cart.length; i++) {
       var itemHTML = "<p>" + cart[i].name + "  $" + "<span class='item-price'>" + cart[i].price + "</span></p>"
+      total += cart[i].price;
       $('.cart-list').append(itemHTML);
 
-      total += cart[i].price;
+      
     }
     $('.total').empty();
     $('.total').append(total);
   }
 
+  
 
   var addItem = function (item) {
     cart.push(item);
@@ -29,11 +31,14 @@ var ShoppingCart = function () {
 
   var clearCart = function () {
     // TODO: Write a function that clears the cart ;-)
-    $('.cart-list').remove();
+    //$('.cart-list').remove();
     total = 0;
     $('.total').empty();
-    $('.shopping-cart').find('.total').text(0);
+    $('.total').text(0);
     cart = [];
+    updateCart();
+
+    
   }
 
 
