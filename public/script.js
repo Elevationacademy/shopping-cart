@@ -15,9 +15,7 @@ var ShoppingCart = function () {
       var itemHTML = "<p>" + cart[i].name + "  $" + "<span class='item-price'>" + cart[i].price + "</span></p>"
       total += cart[i].price;
       $('.cart-list').append(itemHTML);
-
-      
-    }
+       }
     $('.total').empty();
     $('.total').append(total);
   }
@@ -32,7 +30,7 @@ var ShoppingCart = function () {
   var clearCart = function () {
     // TODO: Write a function that clears the cart ;-)
     //$('.cart-list').remove();
-    total = 0;
+    //total = 0;
     $('.total').empty();
     $('.total').text(0);
     cart = [];
