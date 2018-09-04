@@ -1,22 +1,31 @@
-var ShoppingCart = function () {
+const ShoppingCart = function () {
 
-  // an array with all of our cart items
-  var cart = [];
+  const cart = [];
 
-  var updateCart = function () {
-    // TODO: Write this function. In this function we render the page.
-    // Meaning we make sure that all our cart items are displayed in the browser.
-    // Remember to empty the "cart div" before you re-add all the item elements.
+  const updateCart = function () {
+    $('.cart-list').empty();
+    const source = $('#shopping-cart-list-template').html();
+    const template = Handlebars.compile(source);
+    const html = template({list: cart});
+    let totalPrice = 0;
+    for(let i in cart) {
+      totalPrice += cart[i].price;
+    }
+    $('.total').html(totalPrice);
+    $('.cart-list').append(html);
   }
 
 
-  var addItem = function (item) {
-    // TODO: Write this function. Remember this function has nothing to do with display. 
-    // It simply is for adding an item to the cart array, no HTML involved - honest ;-)
+  const addItem = function (item) {
+    const newItem = {
+      name: item.name,
+      price: item.price
+    }
+    cart.push(newItem);
   }
 
-  var clearCart = function () {
-    // TODO: Write a function that clears the cart ;-)
+  const clearCart = function () {
+    cart.splice(0);
   }
   
   return {
@@ -26,7 +35,7 @@ var ShoppingCart = function () {
   }
 };
 
-var app = ShoppingCart();
+const app = ShoppingCart();
 
 // update the cart as soon as the page loads!
 app.updateCart();
@@ -35,15 +44,19 @@ app.updateCart();
 //--------EVENTS---------
 
 $('.view-cart').on('click', function () {
-  // TODO: hide/show the shopping cart!
+  $('.shopping-cart').toggleClass("show");
 });
 
 $('.add-to-cart').on('click', function () {
-  // TODO: get the "item" object from the page
+  let item = {};
+  let $cardItem = $(this).closest('.card-item');
+  item.name = $cardItem.data('name');
+  item.price = $cardItem.data('price');
   app.addItem(item);
   app.updateCart();
 });
 
 $('.clear-cart').on('click', function () {
   app.clearCart();
+  app.updateCart();
 });
