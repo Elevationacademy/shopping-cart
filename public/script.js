@@ -1,12 +1,15 @@
 const ShoppingCart = function () {
 
+  const STORAGE_ID = 'shoppingcart'
+
   // an array with all of our cart items
   const cart = [];
 
   const updateCart = function () {
     let source = document.getElementById("cart-list-template").innerHTML;
     let template = Handlebars.compile(source);
-    let items = template({cart: cart});
+    let storageCart = getFromLocalStorage();
+    let items = template({cart: storageCart});
 
     let $cartList = $('.shopping-cart').find('.cart-list');
     let $totalPrice = $('.shopping-cart').find('.total');
@@ -27,11 +30,22 @@ const ShoppingCart = function () {
   const addItem = function (name, price) {
     let item = { name, price };
     cart.push(item);
+    saveToLocalStorage();
+    app.updateCart();
   }
 
   const clearCart = function () {
     cart.splice(0);
+    saveToLocalStorage();
     updateCart();
+  }
+
+  const saveToLocalStorage = function () {
+    localStorage.setItem(STORAGE_ID, JSON.stringify(cart));
+  }
+
+  const getFromLocalStorage = function () {
+    return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
   }
   
   return {
@@ -64,7 +78,6 @@ $('.add-to-cart').on('click', function () {
   let itemPrice = item.data('price');
 
   app.addItem(itemName, itemPrice);
-  app.updateCart();
 });
 
 $('.clear-cart').on('click', function () {
